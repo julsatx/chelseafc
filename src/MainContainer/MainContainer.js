@@ -12,18 +12,24 @@ import {
 
 export default class MainContainer extends Component {
   state = {
+        staffFlip: false,
+        playersFlip: false,
         chelseaData: [],
         chelseaDB : [],
         players: [],
-        show : true,
-        staffDB: []
-    }
+        staffDB: [],
+        
+        }
 
     connectDB2 = async () => {
       try {
         const staffDB = await fetch('http://localhost:7000/Chelsea/staff')
         const staffJson = await staffDB.json()
-      this.setState({ staffDB: staffJson })
+      this.setState({
+       staffDB: staffJson,
+       staffFlip: true,
+       playersFlip: false
+     })
       return staffJson
       } catch (err) {
         console.log(err.message,'staffDB error!')
@@ -36,7 +42,10 @@ export default class MainContainer extends Component {
           const chelseaDB = await fetch('http://localhost:7000/Chelsea/players')
           const dbJson = await chelseaDB.json()
       
-      this.setState({ chelseaDB: dbJson })
+      this.setState({ chelseaDB: dbJson,
+        playersFlip: true,
+        staffFlip: false
+       })
       return dbJson
       } catch (err) {
         console.log(err.message,'DB caught a catch error')
@@ -64,7 +73,8 @@ export default class MainContainer extends Component {
     }
   render() {
     const playersList = this.state.chelseaDB.map((player,index) =>{
-      return <li key ={index}>
+            
+       return <li key ={index}>
       <Link to={{
         pathname:`/players/${player.player_id}`,
         state:{player}
@@ -75,9 +85,10 @@ export default class MainContainer extends Component {
     })
     const staffList = this.state.staffDB.map((staff,index) => {
       console.log(staff)
+      
       return <li Key ={index}>
       <Link to={{
-        pathname:`/staff/staff.staff_id`,
+        pathname:`/staff/${staff.staff_id}`,
         state:{staff}
       }}>
       {staff.staff_name}
@@ -88,13 +99,17 @@ export default class MainContainer extends Component {
     return (
       <div className="App">
       Chelsea FC
-        <ul>
+
+       <ul>
+
        {playersList}
        {staffList}
        
-        </ul>
+       </ul>
       </div>
     );
   }
 }
 
+// this.setState({staffFlip:false, playersFlip:true})
+// this.State({staffFlip:true, playersFlip:false})
