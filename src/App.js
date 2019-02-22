@@ -5,6 +5,7 @@ import PlayersInfo from './playerInfo/playerInfo'
 import MainContainer from './MainContainer/MainContainer'
 import PlayerInfo from './playerInfo/playerInfo'
 import Staff from './Staff/Staff'
+import StaffRoute from './Staff/staffRoute'
 
 import {
   BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
@@ -24,7 +25,7 @@ import {
               
               <Route exact path='/players' component={MainContainer} />
 
-              <Route exact path='/staff' component={MainContainer} />
+              <Route exact path='/staff' component={StaffRoute} />
 
               <Route path='/players/:players_id' component={PlayerInfo} />
              

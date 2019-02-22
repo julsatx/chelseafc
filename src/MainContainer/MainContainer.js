@@ -72,20 +72,31 @@ export default class MainContainer extends Component {
         this.connectDB2().then((data) => console.log(data,'staffDB loacked and loaded'))
     }
   render() {
+
+
+    const playerPics = this.state.chelseaData.map((player,index) =>{
+      console.log(player.strThumb)
+            return {image : player.strThumb, name : player.idPlayer}
+    })
+
+
     const playersList = this.state.chelseaDB.map((player,index) =>{
-            
+      console.log(player.player_id, ';dlsfkjgs;ldfkjgs;dlfkjgs;dlfkgsj')
+       let pic = playerPics.filter(item => player.player_id === parseInt(item.name)   )
+       console.log(pic, ';flkhdf')
        return <li key ={index}>
       <Link to={{
         pathname:`/players/${player.player_id}`,
-        state:{player}
+        state:{player, pic}
       }}>
       {player.player_name}
       </Link>
       </li>
     })
+
+
     const staffList = this.state.staffDB.map((staff,index) => {
       console.log(staff)
-      
       return <li Key ={index}>
       <Link to={{
         pathname:`/staff/${staff.staff_id}`,
@@ -104,6 +115,7 @@ export default class MainContainer extends Component {
 
        {playersList}
        {staffList}
+
        
        </ul>
       </div>

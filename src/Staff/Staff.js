@@ -22,6 +22,7 @@ export default class Staff extends Component {
 				<h1> Staff Info </h1>
 				<section>
 					<div className = "staffInfo">
+				
 					<p>{this.props.location.state.staff.staff_name}</p>
 					<p>{this.props.location.state.staff.staff_position}</p>
 					</div>
