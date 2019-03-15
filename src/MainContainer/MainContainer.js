@@ -81,7 +81,7 @@ export default class MainContainer extends Component {
 
 
     const playersList = this.state.chelseaDB.map((player,index) =>{
-      console.log(player.player_id, ';dlsfkjgs;ldfkjgs;dlfkjgs;dlfkgsj')
+      console.log(player.player_id,)
        let pic = playerPics.filter(item => player.player_id === parseInt(item.name)   )
        console.log(pic, ';flkhdf')
        return <li key ={index}>

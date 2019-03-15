@@ -16,6 +16,7 @@ import {
   		return (
   			<Router>
   			<div className = "App">
+        
   		    <nav>
           <Link to ='/'>Home</Link>{' '}
           <Link to ='/players'>Players</Link>{' '}
